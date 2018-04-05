@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <br />
+        <h:form id="form">
+            <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+                <p:messages id="messages" />
+                <h:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel for="idTipoIdentificacion" value="Tipo Idenrificacion:" />
+                    <p:inputText id="idTipoIdentificacion" value="#{personaView.persona.idTipoIdentificacion}" required="true" label="Tipo Identificacion">
+                        <f:validateLength maximum="2" />
+                    </p:inputText>
+                    <p:message for="idTipoIdentificacion" />
+
+                    <p:outputLabel for="nroIdentificacion" value="Nro Identificacion:" />
+                    <p:inputText id="nroIdentificacion" value="#{personaView.persona.nroIdentificacion}" required="true" label="Nro Identificacion">
+                    </p:inputText>
+                    <p:message for="nroIdentificacion" />
+
+                    <p:outputLabel for="nombre" value="Nombre:" />
+                    <p:inputText id="nombre" value="#{personaView.persona.nombre}" required="true" label="Nombre">
+                    </p:inputText>
+                    <p:message for="nombre" />
+
+                    <p:outputLabel for="primerApellido" value="Primer Apellido:" />
+                    <p:inputText id="primerApellido" value="#{personaView.persona.primerApellido}" required="true" label="Primer Apellido">
+                    </p:inputText>
+                    <p:message for="primerApellido" />
+
+                    <p:outputLabel for="segundoApellido" value="Segundo Apellido:" />
+                    <p:inputText id="segundoApellido" value="#{personaView.persona.segundoApellido}" required="true" label="Segundo Apellido">
+                    </p:inputText>
+                    <p:message for="segundoApellido" />
+
+                    <p:outputLabel for="fechaNacimiento" value="Fecha Nacimiento:" />
+                    <p:inputText id="fechaNacimiento" value="#{personaView.persona.fechaNacimiento}" required="false" label="Fecha Nacimiento">
+                    </p:inputText>
+                    <p:message for="fechaNacimiento" />
+
+                    <p:outputLabel for="correo" value="Correo:" />
+                    <p:inputText id="correo" value="#{personaView.persona.correo}" required="true" label="Correo">
+                    </p:inputText>
+                    <p:message for="correo" />
+
+                    <p:outputLabel for="direccion" value="Dirección:" />
+                    <p:inputText id="direccion" value="#{personaView.persona.direccion}" required="true" label="Dirección">
+                    </p:inputText>
+                    <p:message for="direccion" />
+
+                    <p:outputLabel for="idGenero" value="Genero:" />
+                    <p:inputText id="idGenero" value="#{personaView.persona.idGenero}" required="true" label="Genero">
+                    </p:inputText>
+                    <p:message for="idGenero" />
+
+                    <p:outputLabel for="idPais" value="ID Pais:" />
+                    <p:inputText id="idPais" value="#{personaView.persona.idPais}" required="true" label="ID Pais">
+                    </p:inputText>
+                    <p:message for="idPais" />
+                </h:panelGrid>
+            </p:panel>
+
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton value="Submit" update="personaList" actionListener="#{personaView.save()}" style="margin-right:20px;"/>
+                </f:facet>
+                <f:facet name="left">
+                    <p:commandButton value="Reset" update="panel" process="@this" actionListener="#{personaView.reset()}"  style="margin-right:20px;" />
+                </f:facet>
+            </p:toolbar>
+        </h:form>
+
+        <p:dataTable id="personaList" var="personas" value="#{personaListView.getlPersona()}"
+                     selection="#{personaListView.selectedPersona}" rowKey="#{personas.idPersona}"
+                     selectionMode="single">
+            <p:column headerText="Tipo Persona">
+                <h:outputText value="#{personas.idTipoIdentificacion}" />
+            </p:column>
+
+            <p:column headerText="Nro Identificación">
+                <h:outputText value="#{personas.nroIdentificacion}" />
+            </p:column>
+
+            <p:column headerText="Nombre">
+                <h:outputText value="#{personas.nombre}" />
+            </p:column>
+
+            <p:column headerText="Primer Apellido">
+                <h:outputText value="#{personas.primerApellido}" />
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>
+
